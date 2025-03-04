@@ -36,7 +36,7 @@ import {
 } from './util/functions';
 import { createLogger } from './util/logger';
 
-//require('dotenv').config();
+// require('dotenv').config();
 
 export const logger = createLogger(config.log);
 
@@ -58,6 +58,18 @@ export function initServer(serverOptions: Partial<ServerOptions>): {
 
   const app = express();
   const PORT = process.env.PORT || serverOptions.port;
+
+  // Adicionando logs para debug das variáveis de ambiente
+  console.log("🚀 [DEBUG] Variáveis de ambiente carregadas:");
+  console.log("PORT:", process.env.PORT);
+  console.log("JWT_SECRET:", process.env.JWT_SECRET);
+  console.log("SESSION:", process.env.SESSION);
+  console.log("TOKEN_STORE:", process.env.TOKEN_STORE);
+  console.log("FOLDER_NAME_TOKEN:", process.env.FOLDER_NAME_TOKEN);
+  console.log("LOG_QR:", process.env.LOG_QR);
+  console.log("HEADLESS:", process.env.HEADLESS);
+  console.log("USE_CHROME:", process.env.USE_CHROME);
+  console.log("DEBUG:", process.env.DEBUG);
 
   app.use(cors());
   app.use(express.json({ limit: '50mb' }));
