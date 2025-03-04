@@ -239,13 +239,21 @@ export async function autoDownload(client: any, req: any, message: any) {
 
 export async function startAllSessions(config: any, logger: any) {
   try {
-    await api.post(
+    console.log("🚀 [DEBUG] Iniciando startAllSessions...");
+    console.log("🔗 URL da requisição:", `${config.host}:${config.port}/api/${config.secretKey}/start-all`);
+    console.log("🔑 Token da requisição:", config.secretKey);
+
+    const response = await api.post(
       `${config.host}:${config.port}/api/${config.secretKey}/start-all`
     );
+
+    console.log("✅ [DEBUG] Resposta recebida:", response.data);
   } catch (e) {
-    logger.error(e);
+    console.error("❌ [ERRO] Erro na requisição Axios:", e.message);
+    console.error("⚠️ [ERRO DETALHADO]", e.response ? e.response.data : "Sem resposta da API");
   }
 }
+
 
 export async function startHelper(client: any, req: any) {
   if (req.serverOptions.webhook.allUnreadOnStart) await sendUnread(client, req);
