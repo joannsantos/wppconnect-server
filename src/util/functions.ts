@@ -248,11 +248,13 @@ export async function startAllSessions(config: any, logger: any) {
     );
 
     console.log("✅ [DEBUG] Resposta recebida:", response.data);
-  } catch (e) {
-    console.error("❌ [ERRO] Erro na requisição Axios:", e.message);
-    console.error("⚠️ [ERRO DETALHADO]", e.response ? e.response.data : "Sem resposta da API");
+  } catch (error: unknown) {
+    const err = error as any; // Converte para 'any' para evitar erro de tipo
+    console.error("❌ [ERRO] Erro na requisição Axios:", err.message || "Erro desconhecido");
+    console.error("⚠️ [ERRO DETALHADO]", err.response ? err.response.data : "Sem resposta da API");
   }
 }
+
 
 
 export async function startHelper(client: any, req: any) {
