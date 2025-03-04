@@ -57,6 +57,12 @@ export function initServer(serverOptions: Partial<ServerOptions>): {
   setMaxListners(serverOptions as ServerOptions);
 
   const app = express();
+
+  console.log("Variáveis carregadas:");
+  console.log("PORT:", process.env.PORT);
+  console.log("JWT_SECRET:", process.env.JWT_SECRET);
+  console.log("SESSION:", process.env.SESSION);
+
   const PORT = process.env.PORT || serverOptions.port;
 
   app.use(cors());
