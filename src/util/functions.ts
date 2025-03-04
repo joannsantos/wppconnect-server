@@ -240,11 +240,11 @@ export async function autoDownload(client: any, req: any, message: any) {
 export async function startAllSessions(config: any, logger: any) {
   try {
     console.log("🚀 [DEBUG] Iniciando startAllSessions...");
-    console.log("🔗 URL da requisição:", `${config.host}:${config.port}/api/${config.secretKey}/start-all`);
+    console.log("🔗 URL da requisição:", `http://localhost:3000/api/${config.secretKey}/start-all`);
     console.log("🔑 Token da requisição:", config.secretKey);
 
     const response = await api.post(
-      `${config.host}:${config.port}/api/${config.secretKey}/start-all`
+      `http://localhost:3000/api/${config.secretKey}/start-all`
     );
 
     console.log("✅ [DEBUG] Resposta recebida:", response.data);
@@ -254,6 +254,7 @@ export async function startAllSessions(config: any, logger: any) {
     console.error("⚠️ [ERRO DETALHADO]", err.response ? err.response.data : "Sem resposta da API");
   }
 }
+
 
 
 
